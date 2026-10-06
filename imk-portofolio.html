@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IMK & Flowchart — ryhndastra.site</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f7ff;--card:#fff;--tx:#12162b;--mut:#4b5270;--bd:#dfe3f5;--ac:#5b5bff;--ac2:#00b8d9;--sh:0 10px 30px rgba(60,70,160,.12);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0d1f;--card:#131836;--tx:#eef0ff;--mut:#a9b0d6;--bd:#262d5c;--ac:#8c8cff;--ac2:#4fd8f0;--sh:0 10px 30px rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{--bg:#0a0d1f;--card:#131836;--tx:#eef0ff;--mut:#a9b0d6;--bd:#262d5c;--ac:#8c8cff;--ac2:#4fd8f0;--sh:0 10px 30px rgba(0,0,0,.45)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Space Grotesk',Inter,sans-serif;line-height:1.15;margin:0}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:60}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;align-items:center;gap:10px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+header b{font-family:'Space Grotesk',sans-serif;margin-right:auto}
+header a{color:var(--tx);text-decoration:none;padding:10px 14px;border-radius:99px;font-weight:500;font-size:.92rem}
+header a:hover{background:var(--card)}
+#theme{border:1px solid var(--bd);background:var(--card);color:var(--tx);width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.1rem}
+.hero{position:relative;text-align:center;padding:90px 20px 80px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;animation:fl 14s ease-in-out infinite}
+.b1{width:340px;height:340px;background:var(--ac);top:-90px;left:-70px}
+.b2{width:300px;height:300px;background:var(--ac2);bottom:-100px;right:-50px;animation-delay:-6s}
+@keyframes fl{50%{transform:translate(40px,30px) scale(1.12)}}
+.hero>*:not(.blob){position:relative}
+.tag{display:inline-block;padding:6px 16px;border:1px solid var(--bd);background:var(--card);border-radius:99px;font-size:.85rem;color:var(--mut)}
+.author{display:flex;align-items:center;gap:12px;width:fit-content;margin:18px auto 0;padding:8px 22px 8px 8px;background:var(--card);border:1px solid var(--bd);border-radius:99px;box-shadow:var(--sh);text-align:left}
+.author .av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 1.2rem 'Space Grotesk',sans-serif;color:#fff;background:linear-gradient(135deg,var(--ac),var(--ac2))}
+.author b{display:block;font:700 1rem/1.2 'Space Grotesk',sans-serif}
+.author small{color:var(--mut);font-size:.85rem;letter-spacing:.04em}
+.hero h1{font-size:clamp(2.1rem,6vw,4rem);margin:18px auto;max-width:800px}
+.grad{background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;margin:0 auto 26px;color:var(--mut);font-size:1.08rem}
+.btn{display:inline-block;padding:14px 26px;border-radius:99px;background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;font-weight:700;text-decoration:none;box-shadow:var(--sh);transition:transform .2s}
+.btn:hover{transform:translateY(-3px)}
+.stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.stats div{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px 22px}
+.stats b{display:block;font:700 1.6rem 'Space Grotesk',sans-serif;color:var(--ac)}
+section{max-width:1080px;margin:0 auto;padding:60px 20px}
+.sh{margin-bottom:30px}.sh span{color:var(--ac);font-weight:700;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+.sh h2{font-size:clamp(1.7rem,4vw,2.5rem);margin:6px 0 8px}.sh p{color:var(--mut);margin:0;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{position:relative;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:22px;cursor:pointer;box-shadow:var(--sh);transition:transform .25s,border-color .25s;align-self:start}
+.card:hover{transform:translateY(-5px);border-color:var(--ac)}
+.card .ic{font-size:1.9rem;width:56px;height:56px;display:grid;place-items:center;border-radius:16px;background:color-mix(in srgb,var(--ac) 14%,transparent);margin-bottom:12px}
+.card h3{font-size:1.15rem;margin-bottom:6px}.card .s{color:var(--mut);font-size:.95rem;margin:0}
+.card .more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}
+.card .more>div{overflow:hidden}
+.card .more p{margin:12px 0 0;padding-top:12px;border-top:1px dashed var(--bd);font-size:.93rem}
+.card[aria-expanded=true] .more{grid-template-rows:1fr}
+.card .hint{display:block;margin-top:12px;color:var(--ac);font-size:.82rem;font-weight:700}
+.card[aria-expanded=true] .hint::after{content:" — tutup ▲"}.card[aria-expanded=false] .hint::after{content:" — lihat detail ▼"}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px;font-size:.85rem;color:var(--mut)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;vertical-align:-2px}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:26px;padding:34px 18px;box-shadow:var(--sh);margin-bottom:34px}
+.panel>h3{text-align:center;margin-bottom:4px}.panel>p{text-align:center;color:var(--mut);margin:0 0 26px;font-size:.92rem}
+.flow{display:flex;flex-direction:column;align-items:center}
+.arr{width:2px;height:30px;background:var(--mut);position:relative;margin:2px 0;opacity:.7}
+.arr::after{content:"";position:absolute;bottom:-1px;left:-5px;border:6px solid transparent;border-top:9px solid var(--mut);border-bottom:0}
+.arr::before{content:"";position:absolute;left:-2px;width:6px;height:6px;border-radius:50%;background:var(--ac);animation:dot 1.6s linear infinite}
+@keyframes dot{from{top:0}to{top:26px}}
+.n{--c:#2f6bff;--t:#fff;position:relative;border:0;font:700 .92rem/1.3 'Space Grotesk',sans-serif;color:var(--t);background:var(--c);padding:14px 22px;min-width:200px;max-width:300px;min-height:48px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.2);transition:transform .2s,filter .2s}
+.n:hover,.n.on{transform:scale(1.07);filter:brightness(1.12)}
+.n:focus-visible{outline:3px solid var(--tx);outline-offset:4px}
+.n small{display:block;font:500 .7rem Inter,sans-serif;opacity:.85;letter-spacing:.08em;text-transform:uppercase}
+.terminal{border-radius:99px;--c:#d62f58}
+.process{border-radius:10px}
+.io{transform:skewX(-12deg);--c:#06c795;--t:#06231a;border-radius:4px}.io>span{display:block;transform:skewX(12deg)}
+.io:hover,.io.on{transform:skewX(-12deg) scale(1.07)}
+.out{--c:#ffb703;--t:#2b1e00}
+.db{--c:#14b8a6;--t:#04211e;border-radius:50%/22%;padding:20px 24px;border-bottom:6px solid rgba(0,0,0,.25)}
+.dec{--c:#8b3fe0;background:none;box-shadow:none;width:250px;max-width:100%;min-height:130px}
+.dec::before{content:"";position:absolute;inset:0;background:var(--c);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);z-index:-1;transition:filter .2s}
+.dec:hover::before,.dec.on::before{filter:brightness(1.15)}
+.dec{isolation:isolate}
+.dec:hover,.dec.on{transform:scale(1.07)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;margin-top:6px}
+.col{display:flex;flex-direction:column;align-items:center;padding:16px 8px;border-radius:20px;border:2px dashed var(--bd)}
+.col h4{margin:0 0 12px;font:700 .85rem 'Space Grotesk',sans-serif;padding:6px 14px;border-radius:99px;color:#fff;background:var(--ac);text-align:center}
+.col.v h4{background:#c25d00}
+.split{display:flex;gap:6px;justify-content:center;width:100%;color:var(--mut);font-size:.8rem;font-weight:700;margin:2px 0 0}
+#bubble{position:absolute;z-index:70;width:min(320px,calc(100vw - 20px));background:var(--tx);color:var(--bg);border-radius:18px;padding:16px 18px;box-shadow:0 18px 40px rgba(0,0,0,.4);font-size:.9rem;line-height:1.55;animation:pop .22s ease}
+#bubble[hidden]{display:none}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.94)}}
+#bubble b{display:block;font:700 1rem 'Space Grotesk',sans-serif;margin-bottom:4px}
+#bubble em{font-style:normal;display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--ac);color:#fff;padding:2px 9px;border-radius:99px;margin-bottom:8px}
+#bubble::after{content:"";position:absolute;left:var(--ax,50%);margin-left:-9px;top:-9px;border:9px solid transparent;border-top:0;border-bottom-color:var(--tx)}
+#bubble.up::after{top:auto;bottom:-9px;border-bottom:0;border-top:9px solid var(--tx);border-top-color:var(--tx)}
+#bubble button{position:absolute;top:6px;right:8px;width:34px;height:34px;border:0;background:none;color:inherit;font-size:1.2rem;cursor:pointer}
+footer{text-align:center;padding:40px 20px;color:var(--mut);font-size:.9rem;border-top:1px solid var(--bd)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:700px){header a{display:none}.cols{grid-template-columns:1fr}.n{min-width:0;width:100%}.dec{width:240px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<header>
+  <b>ryhndastra<span class="grad">.site</span></b>
+  <a href="#tujuan">Tujuan IMK</a><a href="#flowchart">Flowchart</a>
+  <button id="theme" aria-label="Ganti tema terang/gelap">🌓</button>
+</header>
+
+<div class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <span class="tag">Analisis Interaksi Manusia &amp; Komputer</span>
+  <div class="author"><span class="av">A</span><div><b>Alexander</b><small>NIM 250809275</small></div></div>
+  <h1>Web Portofolio <span class="grad">ryhndastra.site</span> dalam kacamata IMK</h1>
+  <p>Delapan tujuan IMK yang menjadi dasar desain, plus rancangan alur sistem dari sisi admin hingga pengunjung.</p>
+  <a class="btn" href="#tujuan">Mulai Jelajahi ↓</a>
+  <div class="stats"><div><b>8</b>Tujuan IMK</div><div><b>2</b>Level Flowchart</div><div><b>2</b>Peran Pengguna</div></div>
+</div>
+
+<section id="tujuan">
+  <div class="sh rv"><span>Bagian 1</span><h2>Tujuan IMK pada Web Portofolio</h2><p>Klik kartu untuk membaca penjelasan lengkapnya.</p></div>
+  <div class="grid" id="goals"></div>
+</section>
+
+<section id="flowchart">
+  <div class="sh rv"><span>Bagian 2</span><h2>Rancangan Flowchart</h2><p>Klik atau ketuk salah satu simbol pada flowchart untuk memunculkan gelembung informasinya.</p></div>
+  <div class="legend rv">
+    <span><i style="background:#d62f58"></i>Start / Finish</span><span><i style="background:#06c795"></i>Input</span><span><i style="background:#2f6bff"></i>Proses</span><span><i style="background:#ffb703"></i>Output</span><span><i style="background:#8b3fe0"></i>Keputusan</span><span><i style="background:#14b8a6"></i>Database</span>
+  </div>
+  <div class="panel rv"><h3>Flowchart Level 0</h3><p>Alur sistem utama dari sisi pemilik hingga dilihat pengunjung</p><div class="flow" id="l0"></div></div>
+  <div class="panel rv"><h3>Flowchart Level 1</h3><p>Sistem terpadu Admin &amp; Pengunjung</p><div class="flow" id="l1"></div></div>
+</section>
+
+<footer>Dibuat oleh <b>Alexander</b> · NIM 250809275<br>Materi IMK · Web Portofolio ryhndastra.site</footer>
+<div id="bubble" role="dialog" aria-live="polite" hidden></div>
+
+<script>
+const goals=[
+["🧭","Usability (Kebergunaan)","Mudah dipakai siapa saja: HRD, klien, atau developer.","Pengunjung harus langsung tahu letak tombol untuk melihat daftar proyek, membaca profil, atau mencari kontak tanpa berpikir keras atau bingung mencari menu."],
+["⚙️","Fungsionalitas","Sistem bekerja sesuai tujuan utamanya: menampilkan informasi.","Link seperti GitHub atau demo proyek harus benar-benar bisa diklik dan mengarah ke halaman yang tepat. Form kontak (jika ada) harus benar-benar mengirim pesan ke email pemilik web."],
+["🔒","Keamanan","Pengunjung aman dari link berbahaya, data admin aman dari peretasan.","Meski hanya portofolio, keamanan tetap penting: pengunjung terlindung dari link berbahaya atau malware, dan data profil serta proyek milik admin tidak mudah diretas atau diubah orang iseng."],
+["😌","Kenyamanan (User Experience)","Bikin pengunjung betah menjelajah.","Dicapai lewat pilihan warna yang tidak membuat mata sakit, ukuran font yang pas, dan transisi halaman yang mulus. Intinya, feel saat web di-scroll harus enak."],
+["🎯","Efektif dan Efisien","Info tepat sasaran, didapat dengan cepat.","Efektif: pengunjung mendapat info yang dibutuhkan, misalnya bahasa pemrograman apa saja yang dikuasai. Efisien: loading cepat, ringan, dan info penting langsung tampil di depan, bukan tersembunyi di balik banyak klik."],
+["⭐","Kepuasan Pengguna","Meninggalkan kesan positif setelah berkunjung.","Desain rapi, info jelas, dan web yang lancar membuat HRD atau klien merasa: \"Wah, developer ini profesional dan karyanya keren.\""],
+["🛡️","Meminimalkan Kesalahan","Mencegah pengunjung salah klik.","Tombol navigasi dibuat cukup besar agar di HP jempol tidak salah menekan menu lain. Jika terjadi error 404, sediakan tombol yang jelas untuk kembali ke halaman utama."],
+["♿","Aksesibilitas","Bisa diakses di berbagai perangkat dan oleh berbagai pengguna.","Tampilan responsif di HP, tablet, dan laptop. Web juga tetap bisa digunakan pengguna dengan keterbatasan, misalnya lewat warna teks dan background yang kontras agar mudah dibaca."]];
+const G=document.getElementById('goals');
+goals.forEach(([ic,t,s,d],i)=>{
+  const b=document.createElement('button');b.className='card rv';b.setAttribute('aria-expanded','false');b.style.transitionDelay=(i%4)*70+'ms';
+  b.innerHTML=`<div class="ic">${ic}</div><h3>${i+1}. ${t}</h3><p class="s">${s}</p><div class="more"><div><p>${d}</p></div></div><span class="hint">Detail</span>`;
+  b.onclick=()=>b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')!=='true');
+  G.append(b);
+});
+
+const T={start:['terminal','START'],fin:['terminal','FINISH'],inp:['io','INPUT'],proc:['process','PROSES'],out:['io out','OUTPUT'],dec:['dec','DECISION'],db:['db','DATABASE']};
+const N={
+s0:['start','Mulai','Titik awal alur. Menandai dimulainya proses kerja sistem portofolio dari sisi pemilik web.'],
+i0:['inp','Admin (Reyhand) memasukkan dokumen profil & aset proyek','Admin menyiapkan konten: dokumen profil, foto, dan teks proyek. Kualitas input menentukan kualitas info yang nanti dilihat pengunjung (efektif).'],
+p0:['proc','Sistem Portofolio memproses & mengelola data','Sistem merapikan, menyimpan, dan mengatur data supaya siap ditampilkan. Di tahap ini aspek keamanan dan fungsionalitas berperan.'],
+o0:['out','Sistem menghasilkan halaman web (UI HTML)','Data diubah menjadi tampilan HTML yang responsif, kontras, dan nyaman dibaca, sesuai tujuan kenyamanan dan aksesibilitas.'],
+o0b:['out','Pengunjung (HRD/Klien) melihat halaman portofolio','Pengunjung menerima hasilnya. Info penting harus tampil langsung di depan agar efisien dan meninggalkan kesan positif.'],
+f0:['fin','Selesai','Titik akhir alur: pengunjung sudah mendapatkan informasi yang dibutuhkan.'],
+s1:['start','Mulai','Titik awal sistem terpadu yang melayani dua jenis pengguna sekaligus.'],
+d1:['dec','Siapa yang mengakses website?','Percabangan alur. Admin menuju jalur update (kelola konten), pengunjung menuju jalur akses (melihat konten). Hak akses berbeda demi keamanan.'],
+a1:['proc','Admin login ke halaman manajemen dasbor','Login membatasi akses sehingga data profil dan proyek tidak mudah diubah orang iseng (tujuan keamanan).'],
+a2:['inp','Admin mengisi form data proyek, deskripsi, & upload gambar','Admin memasukkan data proyek baru. Form harus jelas agar mencegah kesalahan input (error prevention).'],
+a3:['proc','Sistem memvalidasi & mengunggah data','Validasi memastikan data lengkap dan aman, misalnya format gambar dan isi form, sebelum diunggah.'],
+a4:['db','Sistem menyimpan data proyek ke Database','Data proyek disimpan permanen di database sehingga bisa ditarik kapan pun saat pengunjung datang.'],
+v1:['inp','Pengunjung mengetik URL ryhndastra.site di browser','Titik masuk pengunjung. Nama domain yang singkat dan mudah diingat membantu usability.'],
+v2:['proc','Sistem menerima permintaan (request) akses','Server menerima request dari browser pengunjung dan mulai menyiapkan respons.'],
+v3:['proc','Sistem menarik data profil & proyek dari Database','Sistem mengambil data terbaru dari database. Query yang ringan membuat loading cepat (efisien).'],
+v4:['out','Sistem merender & menampilkan UI portofolio ke layar','Halaman ditampilkan sesuai perangkat (responsif). Di sinilah kenyamanan dan kepuasan pengguna dirasakan.'],
+f1:['fin','Selesai','Kedua cabang (Admin dan Pengunjung) bertemu di titik akhir yang sama.']
+};
+const arr=()=>{const a=document.createElement('div');a.className='arr';a.setAttribute('aria-hidden','true');return a};
+function node(k){
+  const [ty,lb,inf]=N[k],[cls,kind]=T[ty];
+  const b=document.createElement('button');b.className='n '+cls;b.dataset.k=k;b.setAttribute('aria-haspopup','dialog');
+  const h=`<small>${kind}</small>${lb}`;b.innerHTML=cls.includes('io')?`<span>${h}</span>`:h;
+  b.onclick=e=>{e.stopPropagation();show(b)};return b;
+}
+function chain(el,keys){keys.forEach((k,i)=>{if(i)el.append(arr());el.append(node(k))})}
+chain(document.getElementById('l0'),['s0','i0','p0','o0','o0b','f0']);
+const L1=document.getElementById('l1');
+chain(L1,['s1','d1']);
+L1.insertAdjacentHTML('beforeend','<div class="split">⬋ ADMIN &nbsp;·&nbsp; PENGUNJUNG ⬊</div>');
+const cols=document.createElement('div');cols.className='cols';
+[['Jika Admin — Jalur Update',['a1','a2','a3','a4'],''],['Jika Pengunjung — Jalur Akses',['v1','v2','v3','v4'],'v']].forEach(([t,ks,c])=>{
+  const d=document.createElement('div');d.className='col '+c;d.innerHTML=`<h4>${t}</h4>`;chain(d,ks);cols.append(d)});
+L1.append(cols,arr(),node('f1'));
+
+const B=document.getElementById('bubble');let cur=null;
+function show(el){
+  if(cur===el){hide();return}
+  hide();cur=el;el.classList.add('on');
+  const [ty,lb,inf]=N[el.dataset.k];
+  B.innerHTML=`<button aria-label="Tutup">×</button><em>${T[ty][1]}</em><b>${lb}</b>${inf}`;
+  B.querySelector('button').onclick=hide;
+  B.hidden=false;B.classList.remove('up');
+  const r=el.getBoundingClientRect(),w=B.offsetWidth,h=B.offsetHeight,sx=scrollX,sy=scrollY;
+  let l=r.left+sx+r.width/2-w/2;l=Math.max(sx+10,Math.min(l,sx+innerWidth-w-10));
+  const up=r.bottom+h+30>innerHeight&&r.top>h+30;
+  B.classList.toggle('up',up);
+  B.style.left=l+'px';B.style.top=(up?r.top+sy-h-14:r.bottom+sy+14)+'px';
+  B.style.setProperty('--ax',(r.left+sx+r.width/2-l)+'px');
+}
+function hide(){B.hidden=true;if(cur)cur.classList.remove('on');cur=null}
+document.addEventListener('click',e=>{if(!B.contains(e.target))hide()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+addEventListener('resize',hide);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+const bar=document.getElementById('bar');
+addEventListener('scroll',()=>{bar.style.width=scrollY/(document.documentElement.scrollHeight-innerHeight)*100+'%'},{passive:true});
+document.getElementById('theme').onclick=()=>{
+  const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.dataset.theme=d?'light':'dark';
+};
+</script>
+</body>
+</html>
